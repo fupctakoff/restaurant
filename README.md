@@ -1,7 +1,7 @@
 # restaurant
 # О проекте
 <br>
-Стек: FastAPI,  PostgreSQL, SQLAlchemy, Redis, Pydantic
+Стек: FastAPI,  PostgreSQL, SQLAlchemy, Redis, Pydantic, Pytest, Docker
 
 # Установка
 <br>
@@ -14,10 +14,13 @@
 
 # Запуск
 
-### 1) Перейти в репозиторий с проектом и запустить с помощью uvicorn
+### 1) Запуск проекта без тестов
   
-  uvicorn src.main:app --reload  
+  docker compose up
 
+### 1.1) Запуск тестов -> вывод в консоли
+
+    docker compose -f docker-compose-tests.yml up
 
 #### Примечание
 
