@@ -18,7 +18,7 @@ class MenuService:
         # time.sleep(4)
         return response
 
-    def get_one_menu(self, api_test_menu_id) -> dict:
+    def get_one_menu(self, api_test_menu_id: int) -> dict:
         cache = self.cache_repository.get_cache(name=f'one_menu_{api_test_menu_id}')
         if cache is not None:
             return cache
@@ -34,13 +34,13 @@ class MenuService:
         self.cache_repository.del_cache(name='list_of_menus')
         return response
 
-    def patch_menu(self, api_test_menu_id, menu_items) -> dict:
+    def patch_menu(self, api_test_menu_id: int, menu_items) -> dict:
         response = self.repository.patch_menu(api_test_menu_id, menu_items)
         new_cache = pickle.dumps(response)
         self.cache_repository.set_cache(name=f'one_menu_{api_test_menu_id}', value=new_cache)
         self.cache_repository.del_cache(name='list_of_menus')
         return response
 
-    def delete_menu(self, api_test_menu_id) -> dict:
+    def delete_menu(self, api_test_menu_id: int) -> dict:
         self.cache_repository.clear_cache(api_test_menu_id)
         return self.repository.delete_menu(api_test_menu_id)
